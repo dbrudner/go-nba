@@ -2,7 +2,9 @@
 
 ## Info on NBA stats API
 
-### [today.json](http://data.nba.net/10s/prod/v1/today.json)
+### [today.json.links](http://data.nba.net/10s/prod/v1/today.json)
+
+### Params
 
 **{{gameDate}}** - `string` - formated yyyymmdd
 *   *example: 20171005* 
@@ -16,7 +18,7 @@
 **{{teamUrlCode}}** - `string` - This value is called "teamId" in teams.json
 *   *example: 1610612738* 
 
-**Endpoint List**
+### Endpoint list
 - "calendar": "/prod/v1/calendar.json",
 - "todayScoreboard": "/prod/v1/20190121/scoreboard.json",
 - "currentScoreboard": "/prod/v1/20190121/scoreboard.json",
