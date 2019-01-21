@@ -71,7 +71,7 @@ type Season struct {
 	Total      CareerSummary   `json:"total"`
 }
 
-func getPlayerProfile(name string, players []Player) Player {
+func getPlayerID(name string, players []Player) string {
 	var result Player
 
 	for _, player := range players {
@@ -79,5 +79,11 @@ func getPlayerProfile(name string, players []Player) Player {
 			result = player
 		}
 	}
-	return result
+	return result.PersonID
+}
+
+func getPlayerProfile(id string) PlayerProfile {
+	playerProfile := new(PlayerProfile)
+	getNBAJSON("/prod/v1/2018/players/"+id+"_profile.json", playerProfile)
+	return *playerProfile
 }

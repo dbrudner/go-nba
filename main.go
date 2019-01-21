@@ -9,7 +9,8 @@ func main() {
 	fmt.Println(todayInfo.Links.AllstarRoster)
 	fmt.Println(allPlayers.Internal.PubDateTime)
 
-	kd := getPlayerProfile("kevin durant", allPlayers.League.Standard)
+	kdID := getPlayerID("kevin durant", allPlayers.League.Standard)
+	kdProfile := getPlayerProfile(kdID)
 
-	fmt.Println(kd.HeightFeet)
+	fmt.Println(kdProfile.League.Standard.Stats.Latest.Ppg)
 }
