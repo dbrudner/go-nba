@@ -1,11 +1,15 @@
-#Golang wrapper around NBA stats API
+# Golang wrapper around NBA stats API
 
-##today.json
+## today.json
 
 {{gameDate}} = date string formated yyyymmdd
+
 {{playerId}} = string. Can be retrieved from leagueRosterPlayers
+
 {{gameId}} = string "999999999"
+
 {{teamUrlCode}} = string. This value is called "teamId" in teams.json
+
 
 "anchorDate": "20190121",
 "currentDate": "20190121",
