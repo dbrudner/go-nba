@@ -8,11 +8,12 @@ import (
 )
 
 func getNBAJSON(endpoint string, target interface{}) {
-	var client = &http.Client{Timeout: 10 * time.Second}
+	client := &http.Client{Timeout: 10 * time.Second}
 	root := "http://data.nba.net/10s/"
 	url := root + endpoint
 
 	resp, err := client.Get(url)
+
 	if err != nil {
 		fmt.Println(err)
 	}

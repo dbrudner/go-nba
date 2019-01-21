@@ -81,9 +81,3 @@ func getPlayer(name string, players []Player) Player {
 	}
 	return result
 }
-
-// func getPlayerProfile(playerID string) func() {
-// 	return func() {
-// 		getNBAJSON("http://data.nba.net/10s/prod/v1/2018/players/" + playerID + "_profile.json")
-// 	}
-// }
