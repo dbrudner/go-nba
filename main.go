@@ -1,16 +1,23 @@
 package main
 
-import "fmt"
+import (
+	"flag"
+	"fmt"
+)
 
 func main() {
+	player := flag.String("player", "", "Search for a player by full name (case insensitive)")
+	flag.Parse()
+	fmt.Println(*player)
+
 	todayInfo := getTodayInfo()
-	allPlayers := getAllPlayers()
 
-	fmt.Println(todayInfo.Links.AllstarRoster)
-	fmt.Println(allPlayers.Internal.PubDateTime)
+	getAllPlayersEndpoint := todayInfo.Links.LeagueRosterPlayers
 
-	kdID := getPlayerID("kevin durant", allPlayers.League.Standard)
-	kdProfile := getPlayerProfile(kdID)
+	allPlayers := getAllPlayers(getAllPlayersEndpoint)
 
-	fmt.Println(kdProfile.League.Standard.Stats.Latest.Ppg)
+	playerID := getPlayerID(*player, allPlayers.League.Standard)
+	playerProfile := getPlayerProfile(playerID)
+
+	fmt.Println(playerProfile.League.Standard.Stats.Latest.Ppg)
 }

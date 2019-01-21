@@ -93,8 +93,8 @@ const (
 	Pos PosEnum = ""
 )
 
-func getAllPlayers() AllPlayers {
+func getAllPlayers(endpoint string) AllPlayers {
 	NBAInfo := new(AllPlayers)
-	getNBAJSON("prod/v1/2018/players.json", NBAInfo)
+	getNBAJSON(endpoint, NBAInfo)
 	return *NBAInfo
 }

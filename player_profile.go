@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fmt"
 	"strings"
 )
 
@@ -75,11 +76,13 @@ func getPlayerID(name string, players []Player) string {
 	var result Player
 
 	for _, player := range players {
+		fmt.Println(player.LastName)
 		if strings.ToLower(name) == strings.ToLower(player.FirstName+" "+player.LastName) {
 			result = player
+			return result.PersonID
 		}
 	}
-	return result.PersonID
+	return "No player found"
 }
 
 func getPlayerProfile(id string) PlayerProfile {
