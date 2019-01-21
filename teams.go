@@ -57,3 +57,9 @@ const (
 	Southeast DivNameEnum = "Southeast"
 	Southwest DivNameEnum = "Southwest"
 )
+
+func getTeams(endpoint string) Teams {
+	teams := new(Teams)
+	getNBAJSON(endpoint, teams)
+	return *teams
+}
