@@ -5,18 +5,14 @@ package main
 // date accessed: 2019-01-21 10:03:41.77
 
 type ConfStandings struct {
-	Internal Internal `json:"_internal"`
-	League   League   `json:"league"`
-}
-
-type Internal struct {
-	PubDateTime string `json:"pubDateTime"`
-	XSLT        string `json:"xslt"`
-	EventName   string `json:"eventName"`
-}
-
-type League struct {
-	Standard Standard `json:"standard"`
+	Internal struct {
+		PubDateTime string `json:"pubDateTime"`
+		XSLT        string `json:"xslt"`
+		EventName   string `json:"eventName"`
+	}
+	League struct {
+		Standard Standard `json:"standard"`
+	}
 }
 
 type Standard struct {

@@ -1,22 +1,18 @@
 package main
 
 type AllPlayers struct {
-	Internal Internal `json:"_internal"`
-	League   League   `json:"league"`
-}
-
-type Internal struct {
-	PubDateTime string `json:"pubDateTime"`
-	XSLT        string `json:"xslt"`
-	EventName   string `json:"eventName"`
-}
-
-type League struct {
-	Standard   []Player `json:"standard"`
-	Africa     []Player `json:"africa"`
-	Sacramento []Player `json:"sacramento"`
-	Vegas      []Player `json:"vegas"`
-	Utah       []Player `json:"utah"`
+	Internal struct {
+		PubDateTime string `json:"pubDateTime"`
+		XSLT        string `json:"xslt"`
+		EventName   string `json:"eventName"`
+	}
+	League struct {
+		Standard   []Player `json:"standard"`
+		Africa     []Player `json:"africa"`
+		Sacramento []Player `json:"sacramento"`
+		Vegas      []Player `json:"vegas"`
+		Utah       []Player `json:"utah"`
+	}
 }
 
 type Player struct {
