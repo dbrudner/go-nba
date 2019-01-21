@@ -63,10 +63,22 @@ const (
 	Southwest DivNameEnum = "Southwest"
 )
 
-func getTeams(endpoint string) Teams {
+func getAllTeams(endpoint string) Teams {
 	teams := new(Teams)
 	getNBAJSON(endpoint, teams)
 	return *teams
+}
+
+func getNBATeams(teams []Teams_Team) []Teams_Team {
+	NBATeams := []Teams_Team{}
+
+	for _, team := range teams {
+		if team.IsNBAFranchise {
+			NBATeams = append(NBATeams, team)
+		}
+	}
+
+	return NBATeams
 }
 
 // getTeamID searches through teams and returns an ID for a single team as a string
