@@ -5,12 +5,8 @@ package main
 // date accessed: 2019-01-21 12:45:46.317
 
 type Schedule struct {
-	Internal struct {
-		PubDateTime string `json:"pubDateTime"`
-		XSLT        string `json:"xslt"`
-		EventName   string `json:"eventName"`
-	}
-	League struct {
+	Internal Internal `json:"_internal"`
+	League   struct {
 		LastStandardGamePlayedIndex int64         `json:"lastStandardGamePlayedIndex"`
 		Standard                    []Standard    `json:"standard"`
 		Africa                      []interface{} `json:"africa"`
@@ -39,20 +35,6 @@ type Schedule_Team struct {
 	Score  string `json:"score"`
 }
 
-type Nugget struct {
-	Text string `json:"text"`
-}
-
-type Watch struct {
-	Broadcast Broadcast `json:"broadcast"`
-}
-
-type Broadcast struct {
-	Broadcasters Broadcasters `json:"broadcasters"`
-	Video        Video        `json:"video"`
-	Audio        Audio        `json:"audio"`
-}
-
 type Audio struct {
 	National HTeamClass `json:"national"`
 	VTeam    HTeamClass `json:"vTeam"`
@@ -60,38 +42,17 @@ type Audio struct {
 }
 
 type HTeamClass struct {
-	Streams      []HTeamStream `json:"streams"`
-	Broadcasters []Canadian    `json:"broadcasters"`
+	Streams      []Schedule_HTeamStream `json:"streams"`
+	Broadcasters []struct {
+		ShortName string `json:"shortName"`
+		LongName  string `json:"longName"`
+	} `json:"broadcasters"`
 }
 
-type Canadian struct {
-	ShortName string `json:"shortName"`
-	LongName  string `json:"longName"`
-}
-
-type HTeamStream struct {
+type Schedule_HTeamStream struct {
 	Language Language `json:"language"`
 	IsOnAir  bool     `json:"isOnAir"`
 	StreamID string   `json:"streamId"`
-}
-
-type Broadcasters struct {
-	National        []Canadian    `json:"national"`
-	Canadian        []Canadian    `json:"canadian"`
-	SpanishNational []interface{} `json:"spanish_national"`
-	VTeam           []Canadian    `json:"vTeam"`
-	HTeam           []Canadian    `json:"hTeam"`
-}
-
-type Video struct {
-	RegionalBlackoutCodes string        `json:"regionalBlackoutCodes"`
-	CanPurchase           bool          `json:"canPurchase"`
-	IsLeaguePass          bool          `json:"isLeaguePass"`
-	IsNationalBlackout    bool          `json:"isNationalBlackout"`
-	IsTNTOT               bool          `json:"isTNTOT"`
-	TntotIsOnAir          bool          `json:"tntotIsOnAir"`
-	Streams               []VideoStream `json:"streams"`
-	DeepLink              []DeepLink    `json:"deepLink"`
 }
 
 type DeepLink struct {
@@ -101,15 +62,6 @@ type DeepLink struct {
 	AndroidApp          string      `json:"androidApp"`
 	DesktopWeb          string      `json:"desktopWeb"`
 	MobileWeb           string      `json:"mobileWeb"`
-}
-
-type VideoStream struct {
-	StreamType            StreamType `json:"streamType"`
-	IsOnAir               bool       `json:"isOnAir"`
-	DoesArchiveExist      bool       `json:"doesArchiveExist"`
-	IsArchiveAvailToWatch bool       `json:"isArchiveAvailToWatch"`
-	StreamID              string     `json:"streamId"`
-	Duration              int64      `json:"duration"`
 }
 
 type Language string

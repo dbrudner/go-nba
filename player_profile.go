@@ -5,12 +5,8 @@ package main
 // date accessed: 2019-01-21 12:50:44.515
 
 type PlayerProfile struct {
-	Internal struct {
-		PubDateTime string `json:"pubDateTime"`
-		XSLT        string `json:"xslt"`
-		EventName   string `json:"eventName"`
-	}
-	League struct {
+	Internal Internal `json:"_internal"`
+	League   struct {
 		Standard struct {
 			TeamID string `json:"teamId"`
 			Stats  struct {

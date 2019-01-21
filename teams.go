@@ -10,11 +10,7 @@ import (
 // date accessed: 2018-08-30 20:00:04.422
 
 type Teams struct {
-	Internal struct {
-		PubDateTime string `json:"pubDateTime"`
-		XSLT        string `json:"xslt"`
-		EventName   string `json:"eventName"`
-	}
+	Internal Internal `json:"_internal"`
 
 	League struct {
 		Standard   []Teams_Team `json:"standard"`

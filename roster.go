@@ -6,12 +6,8 @@ package main
 // date accessed: 2019-01-21 06:48:32.916
 
 type Roster struct {
-	Internal struct {
-		PubDateTime string `json:"pubDateTime"`
-		XSLT        string `json:"xslt"`
-		EventName   string `json:"eventName"`
-	}
-	Leagues struct {
+	Internal Internal `json:"_internal"`
+	Leagues  struct {
 		Standard   Roster_League `json:"standard"`
 		Africa     Roster_League `json:"africa"`
 		Sacramento Roster_League `json:"sacramento"`

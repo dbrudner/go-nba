@@ -1,16 +1,13 @@
 package main
 
 // endpoint to retrieve today's endpoints for NBA stats API
+// all endpoints should be used from here _NOT_ hardcoded
 // src: http://data.nba.net/10s/prod/v1/today.json
 // date accessed: 2019-01-21 12:00:00.47
 
 type NBAInfoJSON struct {
-	_internal struct {
-		EventName   string `json:"eventName"`
-		PubDateTime string `json:"pubDateTime"`
-		Xslt        string `json:"xslt"`
-	} `json:"_internal"`
-	Links struct {
+	Internal Internal `json:"_internal"`
+	Links    struct {
 		AllstarRoster               string `json:"allstarRoster"`
 		AnchorDate                  string `json:"anchorDate"`
 		Boxscore                    string `json:"boxscore"`

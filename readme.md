@@ -56,3 +56,10 @@
 - "teamLeaders2": "/prod/v1/2018/teams/{{teamId}}/leaders.json",
 - "playoffsBracket": "/prod/v1/2017/playoffsBracket.json",
 - "playoffSeriesLeaders": "/prod/v1/2018/playoffs_{{seriesId}}_leaders.json"
+
+### Current features
+
+- Single player info
+- Standings by conference
+- Team roster
+- Team schedule

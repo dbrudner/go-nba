@@ -11,12 +11,8 @@ import (
 // date accessed: 2019-01-21 12:36:10.905
 
 type AllPlayers struct {
-	Internal struct {
-		PubDateTime string `json:"pubDateTime"`
-		XSLT        string `json:"xslt"`
-		EventName   string `json:"eventName"`
-	}
-	League struct {
+	Internal Internal `json:"_internal"`
+	League   struct {
 		Standard   []Player `json:"standard"`
 		Africa     []Player `json:"africa"`
 		Sacramento []Player `json:"sacramento"`
@@ -89,14 +85,12 @@ const (
 type PosEnum string
 
 const (
-	C   PosEnum = "C"
-	CF  PosEnum = "C-F"
-	F   PosEnum = "F"
-	FC  PosEnum = "F-C"
-	FG  PosEnum = "F-G"
-	G   PosEnum = "G"
-	GF  PosEnum = "G-F"
-	Pos PosEnum = ""
+	CF PosEnum = "C-F"
+	F  PosEnum = "F"
+	FC PosEnum = "F-C"
+	FG PosEnum = "F-G"
+	G  PosEnum = "G"
+	GF PosEnum = "G-F"
 )
 
 func getAllPlayers(endpoint string) AllPlayers {
