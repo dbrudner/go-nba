@@ -18,7 +18,7 @@
 **{{teamUrlCode}}** - `string` - This value is called "teamId" in teams.json
 *   *example: 1610612738* 
 
-### Endpoint list
+### Endpoints
 - "calendar": "/prod/v1/calendar.json",
 - "todayScoreboard": "/prod/v1/20190121/scoreboard.json",
 - "currentScoreboard": "/prod/v1/20190121/scoreboard.json",
