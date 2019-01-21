@@ -6,6 +6,10 @@ import (
 	"strings"
 )
 
+// endpoint to retrieve all players info
+// src: http://data.nba.net/10s/prod/v1/2018/players.json
+// date accessed: 2019-01-21 12:36:10.905
+
 type AllPlayers struct {
 	Internal struct {
 		PubDateTime string `json:"pubDateTime"`

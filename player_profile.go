@@ -1,5 +1,9 @@
 package main
 
+// endpoint to retrieve info on a single player
+// src: http://data.nba.net/10s/prod/v1/2018/players/203500_profile.json
+// date accessed: 2019-01-21 12:50:44.515
+
 type PlayerProfile struct {
 	Internal struct {
 		PubDateTime string `json:"pubDateTime"`

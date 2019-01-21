@@ -5,7 +5,7 @@ import (
 	"strings"
 )
 
-// Structs for endpoint to retrieve teams
+// endpoint to retrieve teams
 // src: http://data.nba.net/prod/v2/2018/teams.json
 // date accessed: 2018-08-30 20:00:04.422
 

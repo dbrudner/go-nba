@@ -7,6 +7,9 @@ import (
 	"time"
 )
 
+// function to request NBA stats API with an endpoint
+// reassigns response to target of type interface{}
+
 func getNBAJSON(endpoint string, target interface{}) {
 	client := &http.Client{Timeout: 10 * time.Second}
 	root := "http://data.nba.net/10s/"

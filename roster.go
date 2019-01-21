@@ -1,6 +1,6 @@
 package main
 
-// Structs for endpoint to retrieve team roster
+// endpoint to retrieve team roster
 // Only returns a list of players with playerIds (personId)
 // src: http://data.nba.net/prod/v1/2018/teams/1610612738/roster.json
 // date accessed: 2019-01-21 06:48:32.916
