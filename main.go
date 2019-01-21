@@ -16,7 +16,11 @@ func main() {
 
 	allPlayers := getAllPlayers(getAllPlayersEndpoint)
 
-	playerID := getPlayerID(*player, allPlayers.League.Standard)
+	playerID, err := getPlayerID(*player, allPlayers.League.Standard)
+	if err != nil {
+		panic(err)
+	}
+
 	playerProfile := getPlayerProfile(playerID)
 
 	fmt.Println(playerProfile.League.Standard.Stats.Latest.Ppg)

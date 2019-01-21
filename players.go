@@ -1,6 +1,7 @@
 package main
 
 import (
+	"errors"
 	"fmt"
 	"strings"
 )
@@ -34,7 +35,7 @@ type Player struct {
 	WeightPounds    string           `json:"weightPounds"`
 	WeightKilograms string           `json:"weightKilograms"`
 	DateOfBirthUTC  string           `json:"dateOfBirthUTC"`
-	Teams           []Team           `json:"teams"`
+	Teams           []Player_Team    `json:"teams"`
 	Draft           Draft            `json:"draft"`
 	NbaDebutYear    string           `json:"nbaDebutYear"`
 	YearsPro        string           `json:"yearsPro"`
@@ -50,7 +51,7 @@ type Draft struct {
 	SeasonYear string `json:"seasonYear"`
 }
 
-type Team struct {
+type Player_Team struct {
 	TeamID      string `json:"teamId"`
 	SeasonStart string `json:"seasonStart"`
 	SeasonEnd   string `json:"seasonEnd"`
@@ -100,15 +101,12 @@ func getAllPlayers(endpoint string) AllPlayers {
 	return *NBAInfo
 }
 
-func getPlayerID(name string, players []Player) string {
-	var result Player
-
+func getPlayerID(name string, players []Player) (string, error) {
 	for _, player := range players {
 		fmt.Println(player.LastName)
 		if strings.ToLower(name) == strings.ToLower(player.FirstName+" "+player.LastName) {
-			result = player
-			return result.PersonID
+			return player.PersonID, nil
 		}
 	}
-	return "No player found"
+	return "", errors.New("No player found")
 }
