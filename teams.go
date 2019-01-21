@@ -1,6 +1,7 @@
 package main
 
 import (
+	"errors"
 	"strings"
 )
 
@@ -72,11 +73,11 @@ func getTeams(endpoint string) Teams {
 // tricode is a string with length of 3 (NYK for knicks)
 // teams is an array of team
 // returns a single team ID as a string
-func getTeamID(tricode string, teams []Teams_Team) string {
+func getTeamID(tricode string, teams []Teams_Team) (string, error) {
 	for _, team := range teams {
 		if strings.ToLower(tricode) == strings.ToLower(team.Tricode) {
-			return team.TeamID
+			return team.TeamID, nil
 		}
 	}
-	return "No player found"
+	return "", errors.New("No player found")
 }
