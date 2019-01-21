@@ -1,5 +1,9 @@
 package main
 
+import (
+	"strings"
+)
+
 type PlayerProfile struct {
 	Internal struct {
 		PubDateTime string `json:"pubDateTime"`
@@ -66,3 +70,20 @@ type Season struct {
 	Teams      []CareerSummary `json:"teams"`
 	Total      CareerSummary   `json:"total"`
 }
+
+func getPlayer(name string, players []Player) Player {
+	var result Player
+
+	for _, player := range players {
+		if strings.ToLower(name) == strings.ToLower(player.FirstName+" "+player.LastName) {
+			result = player
+		}
+	}
+	return result
+}
+
+// func getPlayerProfile(playerID string) func() {
+// 	return func() {
+// 		getNBAJSON("http://data.nba.net/10s/prod/v1/2018/players/" + playerID + "_profile.json")
+// 	}
+// }

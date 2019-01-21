@@ -11,4 +11,8 @@ func main() {
 
 	fmt.Println(NBAInfo.Links.AllstarRoster)
 	fmt.Println(allPlayers.Internal.PubDateTime)
+
+	kd := getPlayer("kevin durant", allPlayers.League.Standard)
+
+	fmt.Println(kd.HeightFeet)
 }
