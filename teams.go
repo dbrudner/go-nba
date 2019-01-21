@@ -79,5 +79,5 @@ func getTeamID(tricode string, teams []Teams_Team) (string, error) {
 			return team.TeamID, nil
 		}
 	}
-	return "", errors.New("No player found")
+	return "", errors.New("No team found")
 }
