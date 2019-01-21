@@ -1,6 +1,6 @@
 package main
 
-type LeagueRosterPlayers struct {
+type AllPlayers struct {
 	Internal Internal `json:"_internal"`
 	League   League   `json:"league"`
 }
@@ -92,3 +92,9 @@ const (
 	GF  PosEnum = "G-F"
 	Pos PosEnum = ""
 )
+
+func getAllPlayers() AllPlayers {
+	NBAInfo := new(AllPlayers)
+	getNBAJSON("prod/v1/2018/players.json", NBAInfo)
+	return *NBAInfo
+}

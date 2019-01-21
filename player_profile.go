@@ -71,7 +71,7 @@ type Season struct {
 	Total      CareerSummary   `json:"total"`
 }
 
-func getPlayer(name string, players []Player) Player {
+func getPlayerProfile(name string, players []Player) Player {
 	var result Player
 
 	for _, player := range players {

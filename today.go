@@ -48,3 +48,9 @@ type NBAInfoJSON struct {
 	SeasonScheduleYear int  `json:"seasonScheduleYear"`
 	ShowPlayoffsClinch bool `json:"showPlayoffsClinch"`
 }
+
+func getTodayInfo() NBAInfoJSON {
+	NBAInfo := new(NBAInfoJSON)
+	getNBAJSON("prod/v1/today.json", NBAInfo)
+	return *NBAInfo
+}

@@ -3,16 +3,13 @@ package main
 import "fmt"
 
 func main() {
-	NBAInfo := new(NBAInfoJSON)
-	allPlayers := new(LeagueRosterPlayers)
+	todayInfo := getTodayInfo()
+	allPlayers := getAllPlayers()
 
-	getNBAJSON("prod/v1/today.json", NBAInfo)
-	getNBAJSON("prod/v1/2018/players.json", allPlayers)
-
-	fmt.Println(NBAInfo.Links.AllstarRoster)
+	fmt.Println(todayInfo.Links.AllstarRoster)
 	fmt.Println(allPlayers.Internal.PubDateTime)
 
-	kd := getPlayer("kevin durant", allPlayers.League.Standard)
+	kd := getPlayerProfile("kevin durant", allPlayers.League.Standard)
 
 	fmt.Println(kd.HeightFeet)
 }
