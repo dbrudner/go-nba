@@ -1,5 +1,10 @@
 package main
 
+import (
+	"fmt"
+	"strings"
+)
+
 type AllPlayers struct {
 	Internal struct {
 		PubDateTime string `json:"pubDateTime"`
@@ -93,4 +98,17 @@ func getAllPlayers(endpoint string) AllPlayers {
 	NBAInfo := new(AllPlayers)
 	getNBAJSON(endpoint, NBAInfo)
 	return *NBAInfo
+}
+
+func getPlayerID(name string, players []Player) string {
+	var result Player
+
+	for _, player := range players {
+		fmt.Println(player.LastName)
+		if strings.ToLower(name) == strings.ToLower(player.FirstName+" "+player.LastName) {
+			result = player
+			return result.PersonID
+		}
+	}
+	return "No player found"
 }

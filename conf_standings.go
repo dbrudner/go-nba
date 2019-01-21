@@ -11,14 +11,12 @@ type ConfStandings struct {
 		EventName   string `json:"eventName"`
 	}
 	League struct {
-		Standard Standard `json:"standard"`
+		Standard struct {
+			SeasonYear    int64      `json:"seasonYear"`
+			SeasonStageID int64      `json:"seasonStageId"`
+			Conference    Conference `json:"conference"`
+		}
 	}
-}
-
-type Standard struct {
-	SeasonYear    int64      `json:"seasonYear"`
-	SeasonStageID int64      `json:"seasonStageId"`
-	Conference    Conference `json:"conference"`
 }
 
 type Conferences struct {

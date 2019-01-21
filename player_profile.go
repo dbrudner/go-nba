@@ -1,10 +1,5 @@
 package main
 
-import (
-	"fmt"
-	"strings"
-)
-
 type PlayerProfile struct {
 	Internal struct {
 		PubDateTime string `json:"pubDateTime"`
@@ -70,19 +65,6 @@ type Season struct {
 	SeasonYear int64           `json:"seasonYear"`
 	Teams      []CareerSummary `json:"teams"`
 	Total      CareerSummary   `json:"total"`
-}
-
-func getPlayerID(name string, players []Player) string {
-	var result Player
-
-	for _, player := range players {
-		fmt.Println(player.LastName)
-		if strings.ToLower(name) == strings.ToLower(player.FirstName+" "+player.LastName) {
-			result = player
-			return result.PersonID
-		}
-	}
-	return "No player found"
 }
 
 func getPlayerProfile(id string) PlayerProfile {

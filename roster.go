@@ -11,20 +11,18 @@ type Roster struct {
 		XSLT        string `json:"xslt"`
 		EventName   string `json:"eventName"`
 	}
-	League struct {
-		Standard   Africa `json:"standard"`
-		Africa     Africa `json:"africa"`
-		Sacramento Africa `json:"sacramento"`
-		Vegas      Africa `json:"vegas"`
-		Utah       Africa `json:"utah"`
+	Leagues struct {
+		Standard   Roster_League `json:"standard"`
+		Africa     Roster_League `json:"africa"`
+		Sacramento Roster_League `json:"sacramento"`
+		Vegas      Roster_League `json:"vegas"`
+		Utah       Roster_League `json:"utah"`
 	}
 }
 
-type Africa struct {
-	TeamID  string   `json:"teamId"`
-	Players []Player `json:"players"`
-}
-
-type Player struct {
-	PersonID string `json:"personId"`
+type Roster_League struct {
+	TeamID  string `json:"teamId"`
+	Players []struct {
+		PersonID string `json:"personId"`
+	} `json:"players"`
 }
