@@ -1,4 +1,4 @@
-package main
+package nba
 
 import (
 	"encoding/json"
@@ -10,7 +10,7 @@ import (
 // function to request NBA stats API with an endpoint
 // reassigns response to target of type interface{}
 
-func getNBAJSON(endpoint string, target interface{}) {
+func GetNBAJSON(endpoint string, target interface{}) {
 	client := &http.Client{Timeout: 10 * time.Second}
 	root := "http://data.nba.net/10s/"
 	url := root + endpoint

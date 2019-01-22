@@ -1,4 +1,4 @@
-package main
+package nba
 
 // endpoint to retrieve info on a single player
 // src: http://data.nba.net/10s/prod/v1/2018/players/203500_profile.json
@@ -67,8 +67,8 @@ type Season struct {
 	Total      CareerSummary   `json:"total"`
 }
 
-func getPlayerProfile(id string) PlayerProfile {
+func GetPlayerProfile(id string) PlayerProfile {
 	playerProfile := new(PlayerProfile)
-	getNBAJSON("/prod/v1/2018/players/"+id+"_profile.json", playerProfile)
+	GetNBAJSON("/prod/v1/2018/players/"+id+"_profile.json", playerProfile)
 	return *playerProfile
 }

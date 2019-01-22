@@ -1,4 +1,4 @@
-package main
+package nba
 
 import (
 	"errors"
@@ -93,13 +93,13 @@ const (
 	GF PosEnum = "G-F"
 )
 
-func getAllPlayers(endpoint string) AllPlayers {
+func GetAllPlayers(endpoint string) AllPlayers {
 	NBAInfo := new(AllPlayers)
-	getNBAJSON(endpoint, NBAInfo)
+	GetNBAJSON(endpoint, NBAInfo)
 	return *NBAInfo
 }
 
-func getPlayerID(name string, players []Player) (string, error) {
+func GetPlayerID(name string, players []Player) (string, error) {
 	for _, player := range players {
 		fmt.Println(player.LastName)
 		if strings.ToLower(name) == strings.ToLower(player.FirstName+" "+player.LastName) {

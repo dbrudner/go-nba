@@ -1,4 +1,4 @@
-package main
+package nba
 
 // endpoint to retrieve team roster
 // Only returns a list of players with playerIds (personId)
