@@ -52,6 +52,6 @@ type NBAInfoJSON struct {
 
 func GetTodayInfo() NBAInfoJSON {
 	NBAInfo := new(NBAInfoJSON)
-	GetNBAJSON("prod/v1/today.json", NBAInfo)
+	GetNBAJSON("/prod/v1/today.json", NBAInfo)
 	return *NBAInfo
 }
