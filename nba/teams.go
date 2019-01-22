@@ -1,4 +1,4 @@
-package main
+package nba
 
 import (
 	"errors"
@@ -59,13 +59,13 @@ const (
 	Southwest DivNameEnum = "Southwest"
 )
 
-func getAllTeams(endpoint string) Teams {
+func GetAllTeams(endpoint string) Teams {
 	teams := new(Teams)
-	getNBAJSON(endpoint, teams)
+	GetNBAJSON(endpoint, teams)
 	return *teams
 }
 
-func getNBATeams(teams []Teams_Team) []Teams_Team {
+func GetNBATeams(teams []Teams_Team) []Teams_Team {
 	NBATeams := []Teams_Team{}
 
 	for _, team := range teams {
@@ -81,7 +81,7 @@ func getNBATeams(teams []Teams_Team) []Teams_Team {
 // tricode is a string with length of 3 (NYK for knicks)
 // teams is an array of team
 // returns a single team ID as a string
-func getTeamID(tricode string, teams []Teams_Team) (string, error) {
+func GetTeamID(tricode string, teams []Teams_Team) (string, error) {
 	for _, team := range teams {
 		if strings.ToLower(tricode) == strings.ToLower(team.Tricode) {
 			return team.TeamID, nil

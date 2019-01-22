@@ -1,4 +1,4 @@
-package main
+package nba
 
 // endpoint to retrieve today's endpoints for NBA stats API
 // all endpoints should be used from here _NOT_ hardcoded
@@ -50,8 +50,8 @@ type NBAInfoJSON struct {
 	ShowPlayoffsClinch bool `json:"showPlayoffsClinch"`
 }
 
-func getTodayInfo() NBAInfoJSON {
+func GetTodayInfo() NBAInfoJSON {
 	NBAInfo := new(NBAInfoJSON)
-	getNBAJSON("prod/v1/today.json", NBAInfo)
+	GetNBAJSON("prod/v1/today.json", NBAInfo)
 	return *NBAInfo
 }

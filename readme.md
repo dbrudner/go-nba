@@ -39,13 +39,15 @@
      * Seems like this endpoint doesnt work
 - "gameBookPdf": "/prod/v1/{{gameDate}}/{{gameId}}_Book.pdf",
 - "boxscore": "/prod/v1/{{gameDate}}/{{gameId}}_boxscore.json",
+     * Gets a _ton_ of info about a game. Use this instead of player gamelog to get info on game.
 - "miniBoxscore": "/prod/v1/{{gameDate}}/{{gameId}}_mini_boxscore.json",
 - "pbp": "/prod/v1/{{gameDate}}/{{gameId}}_pbp_{{periodNum}}.json",
 - "leadTracker": "/prod/v1/{{gameDate}}/{{gameId}}_lead_tracker_{{periodNum}}.json",
 - "playerGameLog": "/prod/v1/2018/players/{{personId}}_gamelog.json",
+     * Returns points, rebs, and assists only. Probably useless.
 - "playerProfile": "/prod/v1/2018/players/{{personId}}_profile.json",
 - "playerUberStats": "/prod/v1/2018/players/{{personId}}_uber_stats.json",
-     * Returns empty strings for all values
+     * Returns empty strings for all values, looks useless.
 - "teamSchedule": "/prod/v1/2018/teams/{{teamUrlCode}}/schedule.json",
 - "teamsConfig": "/prod/2018/teams_config.json",
 - "teamRoster": "/prod/v1/2018/teams/{{teamUrlCode}}/roster.json",
@@ -63,3 +65,5 @@
 - Standings by conference
 - Team roster
 - Team schedule
+- Player game log
+- Game box score

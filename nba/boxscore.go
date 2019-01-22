@@ -1,4 +1,4 @@
-package main
+package nba
 
 // endpoint to retrieve a team schedule
 // src: http://data.nba.net/10s/prod/v1/20171005/0011700027_boxscore.json

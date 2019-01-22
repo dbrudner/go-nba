@@ -1,4 +1,4 @@
-package main
+package nba
 
 // endpoint to retrieve a team schedule
 // src: http://data.nba.net/prod/v1/2018/teams/1610612738/schedule.json
