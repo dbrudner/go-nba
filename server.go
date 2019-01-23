@@ -15,7 +15,7 @@ import (
 func main() {
 	router := mux.NewRouter()
 	router.HandleFunc("/standings", GetStandings).Methods("GET")
-	router.HandleFunc("/stats/{name}", GetPlayerStats).Methods("GET")
+	router.HandleFunc("/stats", GetPlayerStats).Methods("GET")
 	log.Fatal(http.ListenAndServe(":8080", router))
 }
 
@@ -27,11 +27,9 @@ func GetStandings(w http.ResponseWriter, r *http.Request) {
 }
 
 func GetPlayerStats(w http.ResponseWriter, r *http.Request) {
-	// vars := mux.Vars(r)
-	// playerName = vars["name"]
-	// fmt.Print(playerName)
+	playerName := r.URL.Query().Get("name")
 	endpoints := nba.FetchTodayInfo()
-	playerID, err := nba.FetchAllPlayersAndFindPlayerID(endpoints.Links.LeagueRosterPlayers, "Stephen Curry")
+	playerID, err := nba.FetchAllPlayersAndFindPlayerID(endpoints.Links.LeagueRosterPlayers, playerName)
 	if err != nil {
 		fmt.Print("Error")
 	}

@@ -63,7 +63,9 @@
 ### Current features
 
 - Single player info
+     `/stats?name=Kevin+Durant`
 - Standings by conference
+     `/standings`
 - Team roster
 - Team schedule
 - Player game log

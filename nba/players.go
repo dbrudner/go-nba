@@ -2,7 +2,6 @@ package nba
 
 import (
 	"errors"
-	"fmt"
 	"strings"
 )
 
@@ -102,7 +101,6 @@ func FetchAllPlayers(endpoint string) AllPlayers {
 
 func FindPlayerID(name string, players []Player) (string, error) {
 	for _, player := range players {
-		fmt.Println(player.LastName)
 		if strings.ToLower(name) == strings.ToLower(player.FirstName+" "+player.LastName) {
 			return player.PersonID, nil
 		}
