@@ -59,13 +59,13 @@ const (
 	Southwest DivNameEnum = "Southwest"
 )
 
-func GetAllTeams(endpoint string) Teams {
+func FetchAllTeams(endpoint string) Teams {
 	teams := new(Teams)
-	GetNBAJSON(endpoint, teams)
+	FetchNBASON(endpoint, teams)
 	return *teams
 }
 
-func GetNBATeams(teams []Teams_Team) []Teams_Team {
+func FetchNBATeams(teams []Teams_Team) []Teams_Team {
 	NBATeams := []Teams_Team{}
 
 	for _, team := range teams {
@@ -81,7 +81,7 @@ func GetNBATeams(teams []Teams_Team) []Teams_Team {
 // tricode is a string with length of 3 (NYK for knicks)
 // teams is an array of team
 // returns a single team ID as a string
-func GetTeamID(tricode string, teams []Teams_Team) (string, error) {
+func FetchTeamID(tricode string, teams []Teams_Team) (string, error) {
 	for _, team := range teams {
 		if strings.ToLower(tricode) == strings.ToLower(team.Tricode) {
 			return team.TeamID, nil

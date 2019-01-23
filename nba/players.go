@@ -93,18 +93,31 @@ const (
 	GF PosEnum = "G-F"
 )
 
-func GetAllPlayers(endpoint string) AllPlayers {
+func FetchAllPlayers(endpoint string) AllPlayers {
 	NBAInfo := new(AllPlayers)
-	GetNBAJSON(endpoint, NBAInfo)
+	FetchNBASON(endpoint, NBAInfo)
+
 	return *NBAInfo
 }
 
-func GetPlayerID(name string, players []Player) (string, error) {
+func FindPlayerID(name string, players []Player) (string, error) {
 	for _, player := range players {
 		fmt.Println(player.LastName)
 		if strings.ToLower(name) == strings.ToLower(player.FirstName+" "+player.LastName) {
 			return player.PersonID, nil
 		}
 	}
+
 	return "", errors.New("No player found")
+}
+
+func FetchAllPlayersAndFindPlayerID(endpoint string, name string) (string, error) {
+	allPlayers := FetchAllPlayers(endpoint)
+	playerID, err := FindPlayerID(name, allPlayers.League.Standard)
+
+	if err != nil {
+		return "", err
+	}
+
+	return playerID, nil
 }

@@ -46,6 +46,7 @@
 - "playerGameLog": "/prod/v1/2018/players/{{personId}}_gamelog.json",
      * Returns points, rebs, and assists only. Probably useless.
 - "playerProfile": "/prod/v1/2018/players/{{personId}}_profile.json",
+     * Lots of stats, useful
 - "playerUberStats": "/prod/v1/2018/players/{{personId}}_uber_stats.json",
      * Returns empty strings for all values, looks useless.
 - "teamSchedule": "/prod/v1/2018/teams/{{teamUrlCode}}/schedule.json",

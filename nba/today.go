@@ -50,8 +50,8 @@ type NBAInfoJSON struct {
 	ShowPlayoffsClinch bool `json:"showPlayoffsClinch"`
 }
 
-func GetTodayInfo() NBAInfoJSON {
+func FetchTodayInfo() NBAInfoJSON {
 	NBAInfo := new(NBAInfoJSON)
-	GetNBAJSON("/prod/v1/today.json", NBAInfo)
+	FetchNBASON("/prod/v1/today.json", NBAInfo)
 	return *NBAInfo
 }

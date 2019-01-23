@@ -1,5 +1,7 @@
 package nba
 
+import "strings"
+
 // endpoint to retrieve info on a single player
 // src: http://data.nba.net/10s/prod/v1/2018/players/203500_profile.json
 // date accessed: 2019-01-21 12:50:44.515
@@ -67,8 +69,10 @@ type Season struct {
 	Total      CareerSummary   `json:"total"`
 }
 
-func GetPlayerProfile(id string) PlayerProfile {
+func FetchPlayerProfile(endpoint string, id string) PlayerProfile {
 	playerProfile := new(PlayerProfile)
-	GetNBAJSON("/prod/v1/2018/players/"+id+"_profile.json", playerProfile)
+	endpoint = strings.Replace(endpoint, "{{personId}}", id, 1)
+	FetchNBASON(endpoint, playerProfile)
+
 	return *playerProfile
 }
