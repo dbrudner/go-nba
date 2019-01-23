@@ -60,7 +60,7 @@
 - "playoffsBracket": "/prod/v1/2017/playoffsBracket.json",
 - "playoffSeriesLeaders": "/prod/v1/2018/playoffs_{{seriesId}}_leaders.json"
 
-### Current features
+### Current API
 
 - Single player info
      `/stats?name=Kevin+Durant`
