@@ -1,13 +1,13 @@
+// endpoint to retrieve teams
+// src: http://data.nba.net/prod/v2/2018/teams.json
+// date accessed: 2018-08-30 20:00:04.422
+
 package nba
 
 import (
 	"errors"
 	"strings"
 )
-
-// endpoint to retrieve teams
-// src: http://data.nba.net/prod/v2/2018/teams.json
-// date accessed: 2018-08-30 20:00:04.422
 
 type Teams struct {
 	Internal Internal `json:"_internal"`
@@ -61,7 +61,7 @@ const (
 
 func FetchAllTeams(endpoint string) Teams {
 	teams := new(Teams)
-	FetchNBASON(endpoint, teams)
+	FetchNBAJSON(endpoint, teams)
 	return *teams
 }
 
@@ -77,7 +77,7 @@ func FetchNBATeams(teams []Teams_Team) []Teams_Team {
 	return NBATeams
 }
 
-// getTeamID searches through teams and returns an ID for a single team as a string
+// FetchTeamID searches through teams and returns an ID for a single team as a string
 // tricode is a string with length of 3 (NYK for knicks)
 // teams is an array of team
 // returns a single team ID as a string

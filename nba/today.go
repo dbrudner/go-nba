@@ -1,9 +1,9 @@
-package nba
-
 // endpoint to retrieve today's endpoints for NBA stats API
 // all endpoints should be used from here _NOT_ hardcoded
 // src: http://data.nba.net/10s/prod/v1/today.json
 // date accessed: 2019-01-21 12:00:00.47
+
+package nba
 
 type NBAInfoJSON struct {
 	Internal Internal `json:"_internal"`
@@ -52,6 +52,6 @@ type NBAInfoJSON struct {
 
 func FetchTodayInfo() NBAInfoJSON {
 	NBAInfo := new(NBAInfoJSON)
-	FetchNBASON("/prod/v1/today.json", NBAInfo)
+	FetchNBAJSON("/prod/v1/today.json", NBAInfo)
 	return *NBAInfo
 }

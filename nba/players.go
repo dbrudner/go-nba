@@ -1,13 +1,13 @@
+// endpoint to retrieve all players info
+// src: http://data.nba.net/10s/prod/v1/2018/players.json
+// date accessed: 2019-01-21 12:36:10.905
+
 package nba
 
 import (
 	"errors"
 	"strings"
 )
-
-// endpoint to retrieve all players info
-// src: http://data.nba.net/10s/prod/v1/2018/players.json
-// date accessed: 2019-01-21 12:36:10.905
 
 type AllPlayers struct {
 	Internal Internal `json:"_internal"`
@@ -94,7 +94,7 @@ const (
 
 func FetchAllPlayers(endpoint string) AllPlayers {
 	NBAInfo := new(AllPlayers)
-	FetchNBASON(endpoint, NBAInfo)
+	FetchNBAJSON(endpoint, NBAInfo)
 
 	return *NBAInfo
 }

@@ -1,8 +1,8 @@
-package nba
-
 // endpoint to retrieve conference standings
 // src: http://data.nba.net/prod/v1/current/standings_conference.json
 // date accessed: 2019-01-21 10:03:41.77
+
+package nba
 
 type ConfStandings struct {
 	Internal Internal `json:"_internal"`

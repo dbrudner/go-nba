@@ -1,10 +1,10 @@
-package nba
-
-import "strings"
-
 // endpoint to retrieve info on a single player
 // src: http://data.nba.net/10s/prod/v1/2018/players/203500_profile.json
 // date accessed: 2019-01-21 12:50:44.515
+
+package nba
+
+import "strings"
 
 type PlayerProfile struct {
 	Internal Internal `json:"_internal"`
@@ -72,7 +72,7 @@ type Season struct {
 func FetchPlayerProfile(endpoint string, id string) PlayerProfile {
 	playerProfile := new(PlayerProfile)
 	endpoint = strings.Replace(endpoint, "{{personId}}", id, 1)
-	FetchNBASON(endpoint, playerProfile)
+	FetchNBAJSON(endpoint, playerProfile)
 
 	return *playerProfile
 }

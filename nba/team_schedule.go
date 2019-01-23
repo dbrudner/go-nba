@@ -1,8 +1,8 @@
-package nba
-
 // endpoint to retrieve a team schedule
 // src: http://data.nba.net/prod/v1/2018/teams/1610612738/schedule.json
 // date accessed: 2019-01-21 12:45:46.317
+
+package nba
 
 type Schedule struct {
 	Internal Internal `json:"_internal"`

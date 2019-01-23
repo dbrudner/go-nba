@@ -1,8 +1,8 @@
-package nba
-
 // endpoint to retrieve a team schedule
 // src: http://data.nba.net/10s/prod/v1/20171005/0011700027_boxscore.json
 // date accessed: 2018-04-12 09:47:01.137
+
+package nba
 
 type PlayerGamelog struct {
 	Internal Internal `json:"_internal"`

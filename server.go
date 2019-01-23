@@ -22,7 +22,7 @@ func main() {
 func GetStandings(w http.ResponseWriter, r *http.Request) {
 	endpoints := nba.FetchTodayInfo()
 	standings := new(nba.ConfStandings)
-	nba.FetchNBASON(endpoints.Links.LeagueConfStandings, standings)
+	nba.FetchNBAJSON(endpoints.Links.LeagueConfStandings, standings)
 	json.NewEncoder(w).Encode(standings)
 }
 
