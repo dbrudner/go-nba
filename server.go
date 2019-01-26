@@ -22,7 +22,7 @@ func main() {
 func GetStandings(w http.ResponseWriter, r *http.Request) {
 	endpoints := nba.FetchTodayInfo()
 	standings := new(nba.ConfStandings)
-	nba.FetchNBAJSON(endpoints.Links.LeagueConfStandings, standings)
+	nba.FetchNBADataJSON(endpoints.Links.LeagueConfStandings, standings)
 	json.NewEncoder(w).Encode(standings)
 }
 
@@ -30,6 +30,7 @@ func GetPlayerStats(w http.ResponseWriter, r *http.Request) {
 	playerName := r.URL.Query().Get("name")
 	endpoints := nba.FetchTodayInfo()
 	playerID, err := nba.FetchAllPlayersAndFindPlayerID(endpoints.Links.LeagueRosterPlayers, playerName)
+	fmt.Print(playerID)
 	if err != nil {
 		fmt.Print("Error")
 	}

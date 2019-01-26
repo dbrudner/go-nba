@@ -61,7 +61,7 @@ const (
 
 func FetchAllTeams(endpoint string) Teams {
 	teams := new(Teams)
-	FetchNBAJSON(endpoint, teams)
+	FetchNBADataJSON(endpoint, teams)
 	return *teams
 }
 

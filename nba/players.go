@@ -94,7 +94,7 @@ const (
 
 func FetchAllPlayers(endpoint string) AllPlayers {
 	NBAInfo := new(AllPlayers)
-	FetchNBAJSON(endpoint, NBAInfo)
+	FetchNBADataJSON(endpoint, NBAInfo)
 
 	return *NBAInfo
 }

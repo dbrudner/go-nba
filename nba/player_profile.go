@@ -72,7 +72,7 @@ type Season struct {
 func FetchPlayerProfile(endpoint string, id string) PlayerProfile {
 	playerProfile := new(PlayerProfile)
 	endpoint = strings.Replace(endpoint, "{{personId}}", id, 1)
-	FetchNBAJSON(endpoint, playerProfile)
+	FetchNBADataJSON(endpoint, playerProfile)
 
 	return *playerProfile
 }

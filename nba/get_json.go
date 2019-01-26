@@ -7,9 +7,9 @@ import (
 	"time"
 )
 
-// FetchNBAJSON function to request NBA stats API with an endpoint
+// FetchNBADataJSON function to request NBA stats API with an endpoint
 // reassigns response to target of type interface{}
-func FetchNBAJSON(endpoint string, target interface{}) {
+func FetchNBADataJSON(endpoint string, target interface{}) {
 	client := &http.Client{Timeout: 10 * time.Second}
 	root := "http://data.nba.net/10s"
 	url := root + endpoint

@@ -1,0 +1,15 @@
+{
+	"ImportPath": "github.com/dbrudner/go-nba",
+	"GoVersion": "go1.11",
+	"GodepVersion": "v80",
+	"Packages": [
+		"./..."
+	],
+	"Deps": [
+		{
+			"ImportPath": "github.com/gorilla/mux",
+			"Comment": "v1.6.2-22-ga796238",
+			"Rev": "a7962380ca08b5a188038c69871b8d3fbdf31e89"
+		}
+	]
+}
