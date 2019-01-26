@@ -1,0 +1,11 @@
+{
+    "name": "Go NBA",
+    "description": "API for NBA stats",
+    "keywords": [
+      "nba",
+      "go"
+    ],
+    "website": "https://github.com/dbrudner/go-nba",
+    "repository": "https://github.com/dbrudner/go-nba"
+  }
+  
