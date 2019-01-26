@@ -26,7 +26,7 @@ type RowSet struct {
 	String *string
 }
 
-func FetchPlayerProfile(endpoint string, id string) PlayerCareerStats {
+func FetchPlayerCareerStats(endpoint string, id string) PlayerCareerStats {
 	playerCareerStats := new(PlayerCareerStats)
 	endpoint = "https://stats.nba.com/stats/playercareerstats?PlayerID=" + id + "&perMode=PerGame"
 	FetchNBADataJSON(endpoint, playerCareerStats)
