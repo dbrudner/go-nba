@@ -19,7 +19,7 @@ func main() {
 
 	router.HandleFunc("/standings", GetStandings).Methods("GET")
 	router.HandleFunc("/stats", GetPlayerStats).Methods("GET")
-	log.Fatal(http.ListenAndServe(port, router))
+	log.Fatal(http.ListenAndServe(":"+port, router))
 }
 
 func GetStandings(w http.ResponseWriter, r *http.Request) {
