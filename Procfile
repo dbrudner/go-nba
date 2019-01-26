@@ -1,1 +1,1 @@
-web: go-nbaasdf
+web: go-nba
