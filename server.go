@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"log"
 	"net/http"
+	"os"
 
 	"github.com/dbrudner/go-nba/nba"
 
@@ -14,9 +15,11 @@ import (
 // our main function
 func main() {
 	router := mux.NewRouter()
+	port := os.Getenv("PORT")
+
 	router.HandleFunc("/standings", GetStandings).Methods("GET")
 	router.HandleFunc("/stats", GetPlayerStats).Methods("GET")
-	log.Fatal(http.ListenAndServe(":8080", router))
+	log.Fatal(http.ListenAndServe(port, router))
 }
 
 func GetStandings(w http.ResponseWriter, r *http.Request) {
