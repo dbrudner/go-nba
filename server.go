@@ -24,11 +24,15 @@ func main() {
 		port = "3000"
 	}
 
-	router.HandleFunc("/standings", GetStandings).Methods("GET")
-	router.HandleFunc("/stats", GetPlayerStats).Methods("GET")
+	// API routes
+	router.HandleFunc("/api/standings", GetStandings).Methods("GET")
+	router.HandleFunc("/api/stats", GetPlayerStats).Methods("GET")
+
+	// HTML routes
 	router.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
 		tmpl.ExecuteTemplate(w, "indexPage", http.StatusInternalServerError)
 	})
+
 	log.Fatal(http.ListenAndServe(":"+port, router))
 }
 
