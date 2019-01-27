@@ -5,6 +5,9 @@ DOCKER_CMD=$(DOCKER_BUILD)/go-nba
 $(DOCKER_CMD): clean
 	mkdir -p $(DOCKER_BUILD)
 	$(GO_BUILD_ENV) go build -v -o $(DOCKER_CMD) .
+	cd client
+	npm install
+	npm run build
 
 clean:
 	rm -rf $(DOCKER_BUILD)

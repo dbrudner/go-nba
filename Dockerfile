@@ -3,8 +3,8 @@ FROM heroku/heroku:16-build as build
 COPY . /app
 WORKDIR /app
 
-ADD package.json /tmp/package.json
-RUN cd /tmp && npm install
+ADD client/package.json /tmp/client/package.json
+RUN cd /tmp/client && npm install && npm run build
 RUN mkdir -p /opt/app && cp -a /tmp/node_modules /opt/app/
 
 # Setup buildpack
