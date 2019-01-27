@@ -3,9 +3,9 @@ FROM heroku/heroku:16-build as build
 COPY . /app
 WORKDIR /app
 
-ADD client/package.json /tmp/client/package.json
-RUN cd /tmp/client && npm install && npm run build
-RUN mkdir -p /opt/app && cp -a /tmp/node_modules /opt/app/
+CMD package.json /tmp/package.json
+CMD cd /tmp && npm install
+CMD mkdir -p /opt/app && cp -a /tmp/node_modules /opt/app/
 
 # Setup buildpack
 RUN mkdir -p /tmp/buildpack/heroku/go /tmp/build_cache /tmp/env
