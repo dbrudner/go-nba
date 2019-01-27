@@ -3,13 +3,13 @@ FROM heroku/heroku:16-build as build
 COPY . /app
 WORKDIR /app
 
-CMD package.json /tmp/package.json
-CMD cd /tmp && npm install
-CMD mkdir -p /opt/app && cp -a /tmp/node_modules /opt/app/
-
 # Setup buildpack
 RUN mkdir -p /tmp/buildpack/heroku/go /tmp/build_cache /tmp/env
 RUN curl https://codon-buildpacks.s3.amazonaws.com/buildpacks/heroku/go.tgz | tar xz -C /tmp/buildpack/heroku/go
+RUN apt-get update
+RUN apt-get install curl
+RUN curl -sL https://deb.nodesource.com/setup_4.x | bash
+RUN apt-get install nodejs
 
 #Execute Buildpack
 RUN STACK=heroku-16 /tmp/buildpack/heroku/go/bin/compile /app /tmp/build_cache /tmp/env
