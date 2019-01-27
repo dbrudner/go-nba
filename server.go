@@ -6,22 +6,33 @@ import (
 	"log"
 	"net/http"
 	"os"
+	"text/template"
 
 	"github.com/dbrudner/go-nba/nba"
-
 	"github.com/gorilla/mux"
 )
+
+type PageData struct {
+}
 
 // our main function
 func main() {
 	router := mux.NewRouter()
+	tmpl := template.Must(template.ParseGlob("./templates/*.tmpl.html"))
 	port := os.Getenv("PORT")
+	if port == "" {
+		port = "3000"
+	}
 
 	router.HandleFunc("/standings", GetStandings).Methods("GET")
 	router.HandleFunc("/stats", GetPlayerStats).Methods("GET")
+	router.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
+		tmpl.ExecuteTemplate(w, "indexPage", http.StatusInternalServerError)
+	})
 	log.Fatal(http.ListenAndServe(":"+port, router))
 }
 
+// Broken???
 func GetStandings(w http.ResponseWriter, r *http.Request) {
 	endpoints := nba.FetchTodayInfo()
 	standings := new(nba.ConfStandings)
