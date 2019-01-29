@@ -20,12 +20,9 @@ func main() {
 	router := mux.NewRouter()
 	tmpl := template.Must(template.ParseGlob("./templates/*.tmpl.html"))
 	port := os.Getenv("PORT")
-	if port == "" {
-		port = "3000"
-	}
 
-	router.HandleFunc("/standings", GetStandings).Methods("GET")
-	router.HandleFunc("/stats", GetPlayerStats).Methods("GET")
+	router.HandleFunc("/standings", getStandings).Methods("GET")
+	router.HandleFunc("/stats", getPlayerStats).Methods("GET")
 	router.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
 		tmpl.ExecuteTemplate(w, "indexPage", http.StatusInternalServerError)
 	})
@@ -33,14 +30,14 @@ func main() {
 }
 
 // Broken???
-func GetStandings(w http.ResponseWriter, r *http.Request) {
+func getStandings(w http.ResponseWriter, r *http.Request) {
 	endpoints := nba.FetchTodayInfo()
 	standings := new(nba.ConfStandings)
 	nba.FetchNBADataJSON(endpoints.Links.LeagueConfStandings, standings)
 	json.NewEncoder(w).Encode(standings)
 }
 
-func GetPlayerStats(w http.ResponseWriter, r *http.Request) {
+func getPlayerStats(w http.ResponseWriter, r *http.Request) {
 	playerName := r.URL.Query().Get("name")
 	endpoints := nba.FetchTodayInfo()
 	playerID, err := nba.FetchAllPlayersAndFindPlayerID(endpoints.Links.LeagueRosterPlayers, playerName)

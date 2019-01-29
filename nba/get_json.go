@@ -21,6 +21,5 @@ func FetchNBADataJSON(endpoint string, target interface{}) {
 	}
 
 	defer resp.Body.Close()
-
 	json.NewDecoder(resp.Body).Decode(target)
 }
