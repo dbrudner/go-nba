@@ -9,6 +9,7 @@ import (
 	"text/template"
 
 	"github.com/dbrudner/go-nba/nba"
+	"github.com/gorilla/handlers"
 	"github.com/gorilla/mux"
 )
 
@@ -20,14 +21,14 @@ func main() {
 	router := mux.NewRouter()
 	tmpl := template.Must(template.ParseGlob("./templates/*.tmpl.html"))
 	port := os.Getenv("PORT")
-	// corsObj := handlers.AllowedOrigins([]string{"*"})
 
 	router.HandleFunc("/standings", getStandings).Methods("GET")
 	router.HandleFunc("/stats", getPlayerStats).Methods("GET")
 	router.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
 		tmpl.ExecuteTemplate(w, "indexPage", http.StatusInternalServerError)
 	})
-	log.Fatal(http.ListenAndServe(":"+port, router))
+	corsObj := handlers.AllowedOrigins([]string{"*"})
+	log.Fatal(http.ListenAndServe(":"+port, handlers.CORS(corsObj)(router)))
 }
 
 // Broken???

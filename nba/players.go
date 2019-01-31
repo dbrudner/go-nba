@@ -99,7 +99,7 @@ func FetchAllPlayers(endpoint string) AllPlayers {
 	return *NBAInfo
 }
 
-func FindPlayerID(name string, players []Player) (string, error) {
+func findPlayerID(name string, players []Player) (string, error) {
 	for _, player := range players {
 		if strings.ToLower(name) == strings.ToLower(player.FirstName+" "+player.LastName) {
 			return player.PersonID, nil
@@ -111,7 +111,7 @@ func FindPlayerID(name string, players []Player) (string, error) {
 
 func FetchAllPlayersAndFindPlayerID(endpoint string, name string) (string, error) {
 	allPlayers := FetchAllPlayers(endpoint)
-	playerID, err := FindPlayerID(name, allPlayers.League.Standard)
+	playerID, err := findPlayerID(name, allPlayers.League.Standard)
 
 	if err != nil {
 		return "", err
