@@ -20,6 +20,7 @@ func main() {
 	router := mux.NewRouter()
 	tmpl := template.Must(template.ParseGlob("./templates/*.tmpl.html"))
 	port := os.Getenv("PORT")
+	// corsObj := handlers.AllowedOrigins([]string{"*"})
 
 	router.HandleFunc("/standings", getStandings).Methods("GET")
 	router.HandleFunc("/stats", getPlayerStats).Methods("GET")
@@ -34,6 +35,7 @@ func getStandings(w http.ResponseWriter, r *http.Request) {
 	endpoints := nba.FetchTodayInfo()
 	standings := new(nba.ConfStandings)
 	nba.FetchNBADataJSON(endpoints.Links.LeagueConfStandings, standings)
+	w.Header().Set("Content-Type", "application/json")
 	json.NewEncoder(w).Encode(standings)
 }
 
@@ -47,6 +49,6 @@ func getPlayerStats(w http.ResponseWriter, r *http.Request) {
 	}
 
 	player := nba.FetchPlayerProfile(endpoints.Links.PlayerProfile, playerID)
-
+	w.Header().Set("Content-Type", "application/json")
 	json.NewEncoder(w).Encode(player)
 }
