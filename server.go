@@ -35,6 +35,7 @@ func main() {
 func getStandings(w http.ResponseWriter, r *http.Request) {
 	endpoints := nba.FetchTodayInfo()
 	standings := new(nba.ConfStandings)
+
 	nba.FetchNBADataJSON(endpoints.Links.LeagueConfStandings, standings)
 	w.Header().Set("Content-Type", "application/json")
 	json.NewEncoder(w).Encode(standings)
@@ -50,6 +51,7 @@ func getPlayerStats(w http.ResponseWriter, r *http.Request) {
 	}
 
 	player := nba.FetchPlayerProfile(endpoints.Links.PlayerProfile, playerID)
+
 	w.Header().Set("Content-Type", "application/json")
 	json.NewEncoder(w).Encode(player)
 }
