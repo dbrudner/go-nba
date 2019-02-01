@@ -16,7 +16,6 @@ import (
 type PageData struct {
 }
 
-// our main function
 func main() {
 	router := mux.NewRouter()
 	tmpl := template.Must(template.ParseGlob("./templates/*.tmpl.html"))
