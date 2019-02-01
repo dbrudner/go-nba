@@ -13,9 +13,6 @@ import (
 	"github.com/gorilla/mux"
 )
 
-type PageData struct {
-}
-
 func main() {
 	router := mux.NewRouter()
 	tmpl := template.Must(template.ParseGlob("./templates/*.tmpl.html"))
@@ -30,6 +27,7 @@ func main() {
 	router.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
 		tmpl.ExecuteTemplate(w, "indexPage", http.StatusInternalServerError)
 	})
+
 	corsObj := handlers.AllowedOrigins([]string{"*"})
 	log.Fatal(http.ListenAndServe(":"+port, handlers.CORS(corsObj)(router)))
 }
@@ -46,7 +44,7 @@ func getPlayerStats(w http.ResponseWriter, r *http.Request) {
 	playerName := r.URL.Query().Get("name")
 	endpoints := nba.FetchTodayInfo()
 	playerID, err := nba.FetchAllPlayersAndFindPlayerID(endpoints.Links.LeagueRosterPlayers, playerName)
-	fmt.Print(playerID)
+
 	if err != nil {
 		fmt.Print("Error")
 	}
@@ -56,14 +54,14 @@ func getPlayerStats(w http.ResponseWriter, r *http.Request) {
 	json.NewEncoder(w).Encode(player)
 }
 
-type GetTeamsResponse struct {
+type getTeamsResponse struct {
 	Teams []nba.Teams_Team
 }
 
 func getTeams(w http.ResponseWriter, r *http.Request) {
 	endpoints := nba.FetchTodayInfo()
 	teams := nba.FetchAllNBATeams(endpoints.Links.Teams)
-	response := GetTeamsResponse{Teams: teams}
+	response := getTeamsResponse{Teams: teams}
 
 	w.Header().Set("Content-Type", "application/json")
 	json.NewEncoder(w).Encode(response)
