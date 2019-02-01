@@ -57,10 +57,16 @@ func getPlayerStats(w http.ResponseWriter, r *http.Request) {
 	json.NewEncoder(w).Encode(player)
 }
 
+type GetTeamsResponse struct {
+	Teams []nba.Teams_Team
+}
+
 func getTeams(w http.ResponseWriter, r *http.Request) {
 	endpoints := nba.FetchTodayInfo()
 	teams := nba.FetchAllNBATeams(endpoints.Links.Teams)
+	response := GetTeamsResponse{Teams: teams}
+	fmt.Printf("%T", response)
 
 	w.Header().Set("Content-Type", "application/json")
-	json.NewEncoder(w).Encode(teams)
+	json.NewEncoder(w).Encode(response)
 }
