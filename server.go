@@ -22,8 +22,12 @@ func main() {
 	tmpl := template.Must(template.ParseGlob("./templates/*.tmpl.html"))
 	port := os.Getenv("PORT")
 
+	// API routes
 	router.HandleFunc("/standings", getStandings).Methods("GET")
 	router.HandleFunc("/stats", getPlayerStats).Methods("GET")
+	router.HandleFunc("/teams", getTeams).Methods("GET")
+
+	// HTML routes
 	router.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
 		tmpl.ExecuteTemplate(w, "indexPage", http.StatusInternalServerError)
 	})
@@ -31,7 +35,6 @@ func main() {
 	log.Fatal(http.ListenAndServe(":"+port, handlers.CORS(corsObj)(router)))
 }
 
-// Broken???
 func getStandings(w http.ResponseWriter, r *http.Request) {
 	endpoints := nba.FetchTodayInfo()
 	standings := new(nba.ConfStandings)
@@ -52,4 +55,12 @@ func getPlayerStats(w http.ResponseWriter, r *http.Request) {
 	player := nba.FetchPlayerProfile(endpoints.Links.PlayerProfile, playerID)
 	w.Header().Set("Content-Type", "application/json")
 	json.NewEncoder(w).Encode(player)
+}
+
+func getTeams(w http.ResponseWriter, r *http.Request) {
+	endpoints := nba.FetchTodayInfo()
+	teams := nba.FetchAllNBATeams(endpoints.Links.Teams)
+
+	w.Header().Set("Content-Type", "application/json")
+	json.NewEncoder(w).Encode(teams)
 }

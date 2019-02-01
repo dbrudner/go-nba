@@ -59,13 +59,15 @@ const (
 	Southwest DivNameEnum = "Southwest"
 )
 
-func FetchAllTeams(endpoint string) Teams {
+func FetchAllNBATeams(endpoint string) []Teams_Team {
 	teams := new(Teams)
 	FetchNBADataJSON(endpoint, teams)
-	return *teams
+	NBATeams := filterNonNBATeams(teams.League.Standard)
+
+	return NBATeams
 }
 
-func FetchNBATeams(teams []Teams_Team) []Teams_Team {
+func filterNonNBATeams(teams []Teams_Team) []Teams_Team {
 	NBATeams := []Teams_Team{}
 
 	for _, team := range teams {
