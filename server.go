@@ -23,6 +23,7 @@ func main() {
 	router.HandleFunc("/stats", getPlayerStats).Methods("GET")
 	router.HandleFunc("/teams", getTeams).Methods("GET")
 	router.HandleFunc("/today-schedule", getTodaySchedule).Methods("GET")
+	router.HandleFunc("/today-simple-schedule", getTodaySimpleSchedule).Methods("GET")
 
 	// HTML routes
 	router.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
@@ -76,7 +77,20 @@ type getTodayScheduleResponse struct {
 
 func getTodaySchedule(w http.ResponseWriter, r *http.Request) {
 	todaySchedule := nba.GetTodaySchedule()
+	fmt.Printf("%T", todaySchedule)
 	response := getTodayScheduleResponse{TodaySchedule: todaySchedule}
 	w.Header().Set("Content-Type", "application/json")
 	json.NewEncoder(w).Encode(response)
+}
+
+type GetTodaySimpleScheduleResponse struct {
+	TodaySchedule []nba.SimpleGameSchedule
+}
+
+func getTodaySimpleSchedule(w http.ResponseWriter, r *http.Request) {
+	todaySchedule := nba.GetTodaySimpleSchedule()
+	response := GetTodaySimpleScheduleResponse{TodaySchedule: todaySchedule}
+	w.Header().Set("Content-Type", "application/json")
+	json.NewEncoder(w).Encode(response)
+	fmt.Print(response)
 }

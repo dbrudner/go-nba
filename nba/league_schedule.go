@@ -5,7 +5,6 @@
 package nba
 
 import (
-	"fmt"
 	"time"
 )
 
@@ -31,7 +30,7 @@ type ScheduledGame struct {
 	IsStartTimeTBD    bool                 `json:"isStartTimeTBD"`
 	StartTimeUTC      string               `json:"startTimeUTC"`
 	StartDateEastern  string               `json:"startDateEastern"`
-	StartTimeEastern  StartTimeEastern     `json:"startTimeEastern"`
+	StartTimeEastern  string               `json:"startTimeEastern"`
 	IsBuzzerBeater    bool                 `json:"isBuzzerBeater"`
 	Period            LeagueSchedulePeriod `json:"period"`
 	Nugget            Nugget               `json:"nugget"`
@@ -87,37 +86,15 @@ type National struct {
 	Broadcasters []Canadian `json:"broadcasters"`
 }
 
-type StartTimeEastern string
-
-const (
-	The1000PmEt StartTimeEastern = "10:00 PM ET"
-	The100PmEt  StartTimeEastern = "1:00 PM ET"
-	The1030PmEt StartTimeEastern = "10:30 PM ET"
-	The1100AmEt StartTimeEastern = "11:00 AM ET"
-	The1100PmEt StartTimeEastern = "11:00 PM ET"
-	The1130PmEt StartTimeEastern = "11:30 PM ET"
-	The1200PmEt StartTimeEastern = "12:00 PM ET"
-	The1230PmEt StartTimeEastern = "12:30 PM ET"
-	The200PmEt  StartTimeEastern = "2:00 PM ET"
-	The300PmEt  StartTimeEastern = "3:00 PM ET"
-	The330PmEt  StartTimeEastern = "3:30 PM ET"
-	The400PmEt  StartTimeEastern = "4:00 PM ET"
-	The430PmEt  StartTimeEastern = "4:30 PM ET"
-	The500PmEt  StartTimeEastern = "5:00 PM ET"
-	The530PmEt  StartTimeEastern = "5:30 PM ET"
-	The600PmEt  StartTimeEastern = "6:00 PM ET"
-	The630PmEt  StartTimeEastern = "6:30 PM ET"
-	The700PmEt  StartTimeEastern = "7:00 PM ET"
-	The730AmEt  StartTimeEastern = "7:30 AM ET"
-	The730PmEt  StartTimeEastern = "7:30 PM ET"
-	The800AmEt  StartTimeEastern = "8:00 AM ET"
-	The800PmEt  StartTimeEastern = "8:00 PM ET"
-	The830PmEt  StartTimeEastern = "8:30 PM ET"
-	The900PmEt  StartTimeEastern = "9:00 PM ET"
-	The930PmEt  StartTimeEastern = "9:30 PM ET"
-)
-
 type Tag string
+
+type SimpleGameSchedule struct {
+	Away             string
+	Home             string
+	StartTimeEastern string
+	StartTimeUTC     string
+	StartDateEastern string
+}
 
 const (
 	Africa       Tag = "AFRICA"
@@ -141,11 +118,36 @@ func GetTodaySchedule() []ScheduledGame {
 
 	for _, game := range todaySchedule.League.Standard {
 		if game.StartDateEastern == todayDate {
-			fmt.Println(game.StartDateEastern)
-			fmt.Println(game.StartTimeEastern)
 			schedule = append(schedule, game)
 		}
 	}
 
+	return schedule
+}
+
+func GetTodaySimpleSchedule() []SimpleGameSchedule {
+	todaySchedule := new(LeagueSchedule)
+	todayInfo := FetchTodayInfo()
+	todayDate := getTodayDate()
+	FetchNBADataJSON(todayInfo.Links.LeagueSchedule, todaySchedule)
+
+	schedule := []SimpleGameSchedule{}
+
+	for _, game := range todaySchedule.League.Standard {
+		if game.StartDateEastern == todayDate {
+			urlCode := game.GameURLCode
+			team1 := urlCode[len(urlCode)-3:]
+			team2 := urlCode[len(urlCode)-6 : len(urlCode)-3]
+
+			simpleGame := SimpleGameSchedule{Away: team1,
+				Home:             team2,
+				StartTimeEastern: game.StartTimeEastern,
+				StartTimeUTC:     game.StartTimeUTC,
+				StartDateEastern: game.StartDateEastern,
+			}
+
+			schedule = append(schedule, simpleGame)
+		}
+	}
 	return schedule
 }
