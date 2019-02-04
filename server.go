@@ -3,10 +3,10 @@ package main
 import (
 	"encoding/json"
 	"fmt"
+	"html/template"
 	"log"
 	"net/http"
 	"os"
-	"text/template"
 
 	"github.com/dbrudner/go-nba/nba"
 	"github.com/gorilla/handlers"
@@ -22,6 +22,7 @@ func main() {
 	router.HandleFunc("/standings", getStandings).Methods("GET")
 	router.HandleFunc("/stats", getPlayerStats).Methods("GET")
 	router.HandleFunc("/teams", getTeams).Methods("GET")
+	router.HandleFunc("/today-schedule", getTodaySchedule).Methods("GET")
 
 	// HTML routes
 	router.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
@@ -65,6 +66,17 @@ func getTeams(w http.ResponseWriter, r *http.Request) {
 	teams := nba.FetchAllNBATeams(endpoints.Links.Teams)
 	response := getTeamsResponse{Teams: teams}
 
+	w.Header().Set("Content-Type", "application/json")
+	json.NewEncoder(w).Encode(response)
+}
+
+type getTodayScheduleResponse struct {
+	TodaySchedule []nba.ScheduledGame
+}
+
+func getTodaySchedule(w http.ResponseWriter, r *http.Request) {
+	todaySchedule := nba.GetTodaySchedule()
+	response := getTodayScheduleResponse{TodaySchedule: todaySchedule}
 	w.Header().Set("Content-Type", "application/json")
 	json.NewEncoder(w).Encode(response)
 }

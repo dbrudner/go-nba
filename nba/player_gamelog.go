@@ -5,21 +5,21 @@
 package nba
 
 type PlayerGamelog struct {
-	Internal Internal `json:"_internal"`
-	League   League   `json:"league"`
+	Internal Internal            `json:"_internal"`
+	League   PlayerGamelogLeague `json:"league"`
 }
 
-type League struct {
+type PlayerGamelogLeague struct {
 	Standard []Gamelog_Standard `json:"standard"`
 }
 
 type Gamelog_Standard struct {
-	GameID      string `json:"gameId"`
-	GameDateUTC string `json:"gameDateUTC"`
-	GameURLCode string `json:"gameUrlCode"`
-	IsHomeGame  bool   `json:"isHomeGame"`
-	HTeam       Team   `json:"hTeam"`
-	VTeam       Team   `json:"vTeam"`
+	GameID      string            `json:"gameId"`
+	GameDateUTC string            `json:"gameDateUTC"`
+	GameURLCode string            `json:"gameUrlCode"`
+	IsHomeGame  bool              `json:"isHomeGame"`
+	HTeam       PlayerGamelogTeam `json:"hTeam"`
+	VTeam       PlayerGamelogTeam `json:"vTeam"`
 	Stats       struct {
 		Points  string `json:"points"`
 		OffReb  string `json:"offReb"`
@@ -29,7 +29,7 @@ type Gamelog_Standard struct {
 	}
 }
 
-type Team struct {
+type PlayerGamelogTeam struct {
 	TeamID   string `json:"teamId"`
 	Score    string `json:"score"`
 	IsWinner bool   `json:"isWinner"`
