@@ -91,3 +91,15 @@ func FetchTeamID(tricode string, teams []Teams_Team) (string, error) {
 	}
 	return "", errors.New("No team found")
 }
+
+func FetchTricodes() []string {
+	endpoints := FetchTodayInfo()
+	teams := FetchAllNBATeams(endpoints.Links.Teams)
+	tricodes := []string{}
+
+	for _, team := range teams {
+		tricodes = append(tricodes, team.Tricode)
+	}
+
+	return tricodes
+}
