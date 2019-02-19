@@ -92,14 +92,18 @@ func FetchTeamID(tricode string, teams []Teams_Team) (string, error) {
 	return "", errors.New("No team found")
 }
 
-func FetchTricodes() []string {
+type TricodeTeams struct {
+	string string
+}
+
+func FetchTricodes() map[string]string {
 	endpoints := FetchTodayInfo()
 	teams := FetchAllNBATeams(endpoints.Links.Teams)
-	tricodes := []string{}
+	tricodesMap := make(map[string]string)
 
 	for _, team := range teams {
-		tricodes = append(tricodes, team.Tricode)
+		tricodesMap[team.Tricode] = team.FullName
 	}
 
-	return tricodes
+	return tricodesMap
 }

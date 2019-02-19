@@ -24,7 +24,7 @@ func main() {
 	router.HandleFunc("/teams", getTeams).Methods("GET")
 	router.HandleFunc("/today-schedule", getTodaySchedule).Methods("GET")
 	router.HandleFunc("/today-simple-schedule", getTodaySimpleSchedule).Methods("GET")
-	router.HandleFunc("/team-tricodes", getTeamtricodes).Methods("GET")
+	router.HandleFunc("/team-tricodes", getTeamTricodes).Methods("GET")
 
 	// HTML routes
 	router.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
@@ -97,12 +97,12 @@ func getTodaySimpleSchedule(w http.ResponseWriter, r *http.Request) {
 }
 
 type GetTeamTricodesResponse struct {
-	Tricodes []string
+	Teams map[string]string
 }
 
-func getTeamtricodes(w http.ResponseWriter, r *http.Request) {
-	tricodes := nba.FetchTricodes()
-	response := GetTeamTricodesResponse{Tricodes: tricodes}
+func getTeamTricodes(w http.ResponseWriter, r *http.Request) {
+	teams := nba.FetchTricodes()
+	response := GetTeamTricodesResponse{Teams: teams}
 	w.Header().Set("Content-Type", "application/json")
 	json.NewEncoder(w).Encode(response)
 }
